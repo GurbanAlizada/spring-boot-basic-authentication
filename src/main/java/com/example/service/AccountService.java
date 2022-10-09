@@ -32,25 +32,18 @@ public class AccountService {
     public AccountDto createAccount(CreateAccountRequest createAccountRequest){
 
         Customer customer = customerService.findCustomerById(createAccountRequest.getCustomerId());
-        customerService.findCustomerById(createAccountRequest.getCustomerId());
-
-        Account a = new Account();
 
         Account account = new Account(
-                null,
+                customer ,
                 createAccountRequest.getInitialCredit() ,
-                LocalDateTime.now(),
-                customer,
-                null
+                LocalDateTime.now()
         );
 
+
         if(createAccountRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0){
-          //Transaction1 transaction1 = transactionService.initiateMoney(account1 , createAccountRequest.getInitialCredit());
 
             Transaction transaction = new Transaction(
-                    null ,
                     createAccountRequest.getInitialCredit() ,
-                    null,
                     LocalDateTime.now() ,
                     account
             );

@@ -1,7 +1,5 @@
 package com.example.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import lombok.Builder
 import org.hibernate.annotations.GenericGenerator
 import java.math.BigDecimal
 import java.time.LocalDateTime
@@ -13,26 +11,26 @@ data class Account (
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    val id: String,
+    val id: String? = "",
+    val balance: BigDecimal? = BigDecimal.ZERO,
+    val creationDate: LocalDateTime,
 
-
-    val balance : BigDecimal? = BigDecimal.ZERO,
-
-
-    val creationDate : LocalDateTime,
-
-
-    @ManyToOne(cascade = [CascadeType.PERSIST])
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "customer_id", nullable = false)
-    val customer: Customer ,
+    val customer: Customer?,
 
-    @OneToMany(mappedBy = "account", cascade = [CascadeType.PERSIST])
-    @JsonIgnore
-    val transactions: List<Transaction>?
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    val transactions: List<Transaction> = ArrayList()
 
 ){
 
 
+    constructor(customer: Customer, balance: BigDecimal, creationDate: LocalDateTime) : this(
+        "",
+        customer = customer,
+        balance = balance,
+        creationDate = creationDate
+    )
 
 
 
@@ -57,7 +55,7 @@ data class Account (
         result = 31 * result + (balance?.hashCode() ?: 0)
         result = 31 * result + creationDate.hashCode()
         result = 31 * result + (customer?.hashCode() ?: 0)
-        result = 31 * result + (transactions?.hashCode() ?: 0)
+        result = 31 * result + transactions.hashCode()
         return result
     }
 

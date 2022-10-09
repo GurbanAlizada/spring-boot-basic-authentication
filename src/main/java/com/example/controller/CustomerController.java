@@ -27,6 +27,12 @@ public class CustomerController {
     }
 
 
+    @GetMapping("/showMessage")
+    public ResponseEntity<String> showMessage(){
+        return ResponseEntity.ok("Hello World");
+    }
+
+
 
 
 }

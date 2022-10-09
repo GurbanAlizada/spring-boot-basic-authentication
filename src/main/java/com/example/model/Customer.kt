@@ -8,25 +8,18 @@ import javax.persistence.*
 data class Customer(
 
     @Id
-    @GeneratedValue(generator = "UUID" )
-    @GenericGenerator(name ="UUID" , strategy = "org.hibernate.id.UUIDGenerator")
-    var id : String ? ,
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    val id: String?,
 
+    val name: String?,
+    val surname: String?,
 
-    val name : String ? ,
-
-    val surname : String ? ,
-
-    @OneToMany(mappedBy = "customer" /*, fetch = FetchType.EAGER*/)
-    @JsonIgnore
-    var accounts : List<Account>
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    val accounts: List<Account>
 
 
 ){
-
-
-
-
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -53,4 +46,6 @@ data class Customer(
     override fun toString(): String {
         return "Customer(id=$id, name=$name, surname='$surname', accounts=$accounts)"
     }
+
+
 }
