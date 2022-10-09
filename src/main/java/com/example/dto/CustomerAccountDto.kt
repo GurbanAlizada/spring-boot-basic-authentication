@@ -1,26 +1,14 @@
-package com.example.dto;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-
-public class CustomerAccountDto {
+package com.example.dto
 
 
-    private String id;
-    private BigDecimal balance = BigDecimal.ZERO;
-    private List<TransactionDto> transactionDtoSet;
-    private LocalDateTime creationDate;
+import java.math.BigDecimal
+
+import java.time.LocalDateTime
 
 
-}
+data class CustomerAccountDto (
+    val id: String?,
+    val balance: BigDecimal = BigDecimal.ZERO,
+    val transactionDtoSet: List<TransactionDto>?,
+    val creationDate: LocalDateTime?
+    )

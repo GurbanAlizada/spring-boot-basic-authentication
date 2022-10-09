@@ -15,16 +15,13 @@ data class Transaction(
     val id : String ,
 
 
-    @Column(name = "amount")
     val amount : BigDecimal ?,
 
 
-    @Column(name = "transaction_type")
     @Enumerated(EnumType.STRING)
     val transactionType : TransactionType  = TransactionType.INITIAL ,
 
 
-    @Column(name = "transaction_date")
     val transactionDate : LocalDateTime ?,
 
     @ManyToOne /*(fetch = FetchType.LAZY )*/
@@ -47,4 +44,8 @@ data class Transaction(
 
 
 
+}
+
+enum class TransactionType {
+    INITIAL, TRANSFER
 }

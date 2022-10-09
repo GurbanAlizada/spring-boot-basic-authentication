@@ -11,7 +11,6 @@ public class AccountCustomerDtoConvertor {
 
 
     public AccountCustomerDto convertToAccountCustomerDto(Customer customer1){
-        if(customer1 == null) return new AccountCustomerDto();
         return new AccountCustomerDto(
                 customer1.getId(),
                 customer1.getName(),

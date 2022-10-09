@@ -1,21 +1,15 @@
-package com.example.dto;
+package com.example.dto
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import java.math.BigDecimal;
+import javax.validation.constraints.NotBlank
+import java.math.BigDecimal
+import javax.validation.constraints.Min
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class CreateAccountRequest {
 
-    @NotBlank()
-    private String customerId;
-    @Min(0)
-    private BigDecimal initialCredit;
+data class CreateAccountRequest (
 
-}
+    @field:NotBlank(message = "CustomerId must not be empty")
+    val customerId: String? ,
+    @field:Min(0, message = "Initial Credit value must not be negative value")
+    val initialCredit: BigDecimal?
+)

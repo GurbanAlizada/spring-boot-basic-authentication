@@ -1,18 +1,9 @@
-package com.example.dto;
+package com.example.dto
 
 
-import lombok.*;
+data class AccountCustomerDto (
+     val id: String? ,
+     val name: String? ,
+     val surname: String?
 
-@Data
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode
-
-@NoArgsConstructor
-public class AccountCustomerDto {
-
-    private String id;
-    private String name;
-    private String surname;
-
-}
+     )

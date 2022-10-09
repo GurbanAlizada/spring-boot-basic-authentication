@@ -13,6 +13,8 @@ package com.example;
         import springfox.documentation.spring.web.plugins.Docket;
         import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+        import java.util.ArrayList;
+
 @SpringBootApplication
 @EnableSwagger2
 public class SpringBootBasicAuthenticationApplication  implements CommandLineRunner {
@@ -35,9 +37,9 @@ public class SpringBootBasicAuthenticationApplication  implements CommandLineRun
     @Override
     public void run(String... args) throws Exception {
 
-        Customer customer1 = customerRepository.save(new Customer(null , "Messi" ,"Leo" , null));
-        Customer customer12 = customerRepository.save(new Customer(null , "Ronaldo" ,"Cr" , null));
-        Customer customer13 = customerRepository.save(new Customer(null , "Neymar" ,"Jr" , null));
+        Customer customer1 = customerRepository.save(new Customer(null , "Messi" ,"Leo" , new ArrayList<>()));
+        Customer customer12 = customerRepository.save(new Customer(null , "Ronaldo" ,"Cr" , new ArrayList<>()));
+        Customer customer13 = customerRepository.save(new Customer(null , "Neymar" ,"Jr" , new ArrayList<>()));
 
         System.out.println(customer1);
         System.out.println(customer12);

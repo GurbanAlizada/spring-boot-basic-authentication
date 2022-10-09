@@ -13,10 +13,8 @@ data class Customer(
     var id : String ? ,
 
 
-    @Column(name = "name")
     val name : String ? ,
 
-    @Column(name = "surname")
     val surname : String ? ,
 
     @OneToMany(mappedBy = "customer" /*, fetch = FetchType.EAGER*/)
@@ -26,7 +24,6 @@ data class Customer(
 
 ){
 
-    constructor(name: String? , surname: String ? ) : this ("" ,  name, surname , ArrayList())
 
 
 

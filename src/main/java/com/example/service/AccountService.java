@@ -6,7 +6,6 @@ import com.example.dto.convertor.AccountDtoConvertor;
 import com.example.model.Account;
 import com.example.model.Customer;
 import com.example.model.Transaction;
-import com.example.model.TransactionType;
 import com.example.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,9 @@ public class AccountService {
         Customer customer = customerService.findCustomerById(createAccountRequest.getCustomerId());
         customerService.findCustomerById(createAccountRequest.getCustomerId());
 
-        Account account1 = new Account(
+        Account a = new Account();
+
+        Account account = new Account(
                 null,
                 createAccountRequest.getInitialCredit() ,
                 LocalDateTime.now(),
@@ -46,22 +47,22 @@ public class AccountService {
         if(createAccountRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0){
           //Transaction1 transaction1 = transactionService.initiateMoney(account1 , createAccountRequest.getInitialCredit());
 
-            Transaction transaction1 = new Transaction(
-                                "" ,
-                                createAccountRequest.getInitialCredit() ,
+            Transaction transaction = new Transaction(
+                    null ,
+                    createAccountRequest.getInitialCredit() ,
                     null,
-                    LocalDateTime.now(),
-                    account1
-                        );
+                    LocalDateTime.now() ,
+                    account
+            );
 
 
-                     account1.getTransactions().add(transaction1);
+                     account.getTransactions().add(transaction);
         }
 
 
 
 
-        return accountDtoConvertor.convertToAccountDto(accountRepository.save(account1));
+        return accountDtoConvertor.convertToAccountDto(accountRepository.save(account));
     }
 
 
